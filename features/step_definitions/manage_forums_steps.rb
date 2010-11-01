@@ -1,22 +1,24 @@
-Given /^I have forum (.*)$/ do |name|
+Given /^I have forum (.+)$/ do |name|
   Forum.create(:name => name)
 end
 
-Given /^I have forums (.*)$/ do |names|
-  names.split(',').each do |name|
+Given /^I have forums (.+)$/ do |names|
+  names.split(', ').each do |name|
     Forum.create(:name => name)
   end
 end
 
-Given /^I add forum (.*)$/ do |name|
+Given /^I add forum (.+)$/ do |name|
   Forum.create(:name => name)
 end
 
-Given /^I remove forum (.*)t$/ do |name|
-  @forum = Forum.find(:name => name)
-  @forum.destroy!
+Given /^I remove forum (.+)$/ do |name|
+  @forum = Forum.where(:name => name).first
+  @forum.destroy
 end
 
-Given /^I change name of First to Other$/ do
-  pending # express the regexp above with the code you wish you had
+Given /^I change name of (.+) to (.+)$/ do |original, changed|
+  @forum = Forum.where(:name => original).first
+  @forum.name = changed
+  @forum.save
 end

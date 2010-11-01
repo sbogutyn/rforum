@@ -18,7 +18,7 @@ Feature: Manage Forums
 		And I should see "Third"
 
 	Scenario: Remove one Forums
-		Given I have forum First, Second, Third
+		Given I have forums First, Second, Third
 		And I remove forum First
 		When I go to the homepage
 		Then I should see "Second"
